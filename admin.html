@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AERVIA | Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body style="background-color: var(--bg-light);">
+
+    <!-- Admin Navbar -->
+    <nav class="navbar" style="background-color: var(--primary-dark); color: white;">
+        <div class="container">
+            <a href="index.html" class="logo" style="color: white;">AERVIA <span
+                    style="font-weight: 400; font-size: 0.8em; opacity: 0.8;">Admin</span></a>
+            <div>
+                <a href="index.html" class="btn btn-sm" style="background: rgba(255,255,255,0.1); color: white;">&larr;
+                    Back to Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container section">
+        <div class="flex-row-md"
+            style="justify-content: space-between; align-items: center; margin-bottom: var(--spacing-lg);">
+            <h2>Order Management</h2>
+            <button id="clearAllBtn" class="btn btn-danger btn-sm">Clear All Orders</button>
+        </div>
+
+        <div class="card" style="padding: 0; overflow: hidden;">
+            <div class="table-responsive">
+                <table id="ordersTable">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Service</th>
+                            <th>Route (Pick &rarr; Drop)</th>
+                            <th>Stats</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ordersBody">
+                        <!-- Rows rendered by JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="text-center" style="padding: 40px; display: none;">
+                <h3 style="color: #ccc;">No orders available</h3>
+                <p>New orders will appear here instantly.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+
+</html>

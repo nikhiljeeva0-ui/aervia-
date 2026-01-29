@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AERVIA | Drone Powered Smart Delivery</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">AERVIA</a>
+            <div class="hamburger" id="hamburger">
+                <span>&#9776;</span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#order" class="btn btn-primary btn-sm">Order Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero text-center">
+        <!-- Animated Drone 1 -->
+        <div class="drone-container">
+            <img src="drone_delivery.png" alt="Delivery Drone">
+        </div>
+
+        <div class="container" style="position: relative; z-index: 1;">
+            <h1>AERVIA</h1>
+            <h3>Drone Powered Smart Delivery</h3>
+            <p class="mb-3">Fast, secure and autonomous delivery for the modern world.</p>
+            <a href="#order" class="btn btn-primary">Place Order</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section">
+        <div class="container relative-container">
+            <h2 class="text-center mb-3 section-title-premium">Our Premium Services</h2>
+
+            <div class="services-layout">
+                <!-- Left Side: Visual -->
+                <div class="service-visual">
+                    <div class="visual-card-glass">
+                        <img src="service-drone.png" alt="Advanced Delivery Drone" class="service-drone-img">
+                        <div class="visual-overlay-text">
+                            <h4>Next-Gen Logistics</h4>
+                            <p>Powered by AI-driven autonomous fleet.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side: Grid -->
+                <div class="grid-services">
+                    <!-- Medical -->
+                    <div class="card service-card-premium">
+                        <div class="card-icon">&#128138;</div>
+                        <h3>Medical Delivery</h3>
+                        <p>Urgent transport of medicines, blood, and organs.</p>
+                        <div class="service-meta">
+                            <span>&#9201; ~15 mins</span>
+                            <span>&#128230; Max 2kg</span>
+                        </div>
+                    </div>
+                    <!-- Campus -->
+                    <div class="card service-card-premium">
+                        <div class="card-icon">&#127891;</div>
+                        <h3>Campus Delivery</h3>
+                        <p>Food and books delivered across university campuses.</p>
+                        <div class="service-meta">
+                            <span>&#9201; ~20 mins</span>
+                            <span>&#128230; Max 5kg</span>
+                        </div>
+                    </div>
+                    <!-- Emergency -->
+                    <div class="card service-card-premium">
+                        <div class="card-icon">&#128680;</div>
+                        <h3>Emergency Aid</h3>
+                        <p>Disaster relief and first aid kits to remote areas.</p>
+                        <div class="service-meta">
+                            <span>&#9201; ~10 mins</span>
+                            <span>&#128230; Max 3kg</span>
+                        </div>
+                    </div>
+                    <!-- Parcel -->
+                    <div class="card service-card-premium">
+                        <div class="card-icon">&#128230;</div>
+                        <h3>Small Parcel</h3>
+                        <p>Rapid delivery of small packages and documents.</p>
+                        <div class="service-meta">
+                            <span>&#9201; ~30 mins</span>
+                            <span>&#128230; Max 4kg</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Section -->
+    <section id="order" class="section" style="background-color: var(--bg-light);">
+        <div class="container">
+            <h2 class="text-center mb-3">Place Your Order</h2>
+
+            <!-- Step Indicator -->
+            <div class="step-indicator">
+                <div class="step active" id="step1">
+                    <div class="step-circle">1</div>
+                    <div class="step-label">Details</div>
+                </div>
+                <div class="step" id="step2">
+                    <div class="step-circle">2</div>
+                    <div class="step-label">Review</div>
+                </div>
+                <div class="step" id="step3">
+                    <div class="step-circle">3</div>
+                    <div class="step-label">Done</div>
+                </div>
+            </div>
+
+            <div class="order-layout">
+                <!-- Left Column: Form -->
+                <div class="card">
+                    <form id="orderForm">
+                        <!-- Customer Details -->
+                        <h4 class="mb-2">Customer Information</h4>
+                        <div class="flex-row-md">
+                            <div class="form-group">
+                                <label for="customerName">Full Name</label>
+                                <input type="text" id="customerName" class="form-control" required
+                                    placeholder="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" class="form-control" required placeholder="+1 234 567 890">
+                            </div>
+                        </div>
+
+                        <!-- Service Details -->
+                        <h4 class="mb-2" style="margin-top: var(--spacing-md);">Service Details</h4>
+                        <div class="flex-row-md">
+                            <div class="form-group">
+                                <label for="serviceType">Service Type</label>
+                                <select id="serviceType" class="form-control" required>
+                                    <option value="" disabled selected>Select Service</option>
+                                    <option value="Medical">Medical Delivery ($20 base)</option>
+                                    <option value="Campus">Campus Delivery ($5 base)</option>
+                                    <option value="Emergency">Emergency Aid ($50 base)</option>
+                                    <option value="Parcel">Small Parcel ($10 base)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="priority">Priority</label>
+                                <select id="priority" class="form-control" required>
+                                    <option value="Normal">Normal</option>
+                                    <option value="Emergency">Urgent (+50%)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Locations -->
+                        <div class="form-group">
+                            <label for="pickup">Pickup Location</label>
+                            <input type="text" id="pickup" class="form-control" required
+                                placeholder="e.g. Central Pharmacy">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="delivery">Delivery Location</label>
+                            <input type="text" id="delivery" class="form-control" required
+                                placeholder="e.g. 123 Main St, Apt 4B">
+                        </div>
+
+                        <!-- Weight -->
+                        <div class="form-group">
+                            <label for="weight">Package Weight (kg)</label>
+                            <input type="number" id="weight" class="form-control" min="0.1" max="10" step="0.1" required
+                                placeholder="Max 10kg">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block"
+                            style="margin-top: var(--spacing-lg);">Confirm Order</button>
+                    </form>
+
+                    <!-- Confirmation Card (Hidden by default) -->
+                    <div id="confirmationCard" class="confirmation-card" style="display: none;">
+                        <span class="success-icon">&#10004;</span>
+                        <h3 class="mb-2">Order Placed Successfully!</h3>
+                        <p class="mb-3">Your drone is being prepped for deployment.</p>
+
+                        <div class="price-row" style="justify-content: center; margin-bottom: var(--spacing-sm);">
+                            <span style="color: #666;">Order ID:</span>
+                            <strong id="confirmId" style="margin-left: 8px;">--</strong>
+                        </div>
+
+                        <a href="index.html" class="btn btn-primary btn-sm" style="margin-top: var(--spacing-md);">Place
+                            Another Order</a>
+                    </div>
+                </div>
+
+                <!-- Right Column: Price Card -->
+                <div class="price-card">
+                    <h4>Order Summary</h4>
+                    <div class="price-row">
+                        <span>Service</span>
+                        <strong id="summaryService">--</strong>
+                    </div>
+                    <div class="price-row">
+                        <span>Weight</span>
+                        <strong id="summaryWeight">0 kg</strong>
+                    </div>
+                    <div class="price-row">
+                        <span>Priority</span>
+                        <strong id="summaryPriority">Normal</strong>
+                    </div>
+                    <div class="price-row">
+                        <span>Time</span>
+                        <strong id="summaryTime">-- mins</strong>
+                    </div>
+
+                    <div class="price-total">
+                        <span class="total-label">Estimated Total</span>
+                        <div class="total-amount" id="estCost">$0.00</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-premium">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <h2>AERVIA</h2>
+                <p class="footer-tagline">Autonomous Drone Logistics</p>
+            </div>
+
+            <div class="footer-links">
+                <a href="#services">Services</a>
+                <a href="#order">Order</a>
+                <a href="#">Contact</a>
+                <a href="admin.html">Admin</a>
+            </div>
+
+            <div class="footer-meta">
+                <p>Contact: support@aervia.com</p>
+                <p>Designed & built in India 🇮🇳</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

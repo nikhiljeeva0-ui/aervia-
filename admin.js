@@ -10,15 +10,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const emptyState = document.getElementById('emptyState');
     const clearAllBtn = document.getElementById('clearAllBtn');
 
-    // Init
-    loadOrders();
+    // Init - Listen for real-time updates
+    const ordersRef = database.ref('orders');
+    ordersRef.on('value', (snapshot) => {
+        const data = snapshot.val();
+        const orders = data ? Object.values(data) : [];
+        // Sort by timestamp descending (newest first)
+        orders.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+        renderTable(orders);
+    });
 
     // --- Core Functions ---
-
-    function loadOrders() {
-        const orders = JSON.parse(localStorage.getItem('aervia_orders')) || [];
-        renderTable(orders);
-    }
 
     function renderTable(orders) {
         ordersBody.innerHTML = ''; // Clear current
@@ -81,34 +83,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Actions (Exposed to Window) ---
 
     window.updateOrderStatus = function (id, newStatus) {
-        const orders = JSON.parse(localStorage.getItem('aervia_orders')) || [];
-        const orderIndex = orders.findIndex(o => o.id === id);
-
-        if (orderIndex > -1) {
-            orders[orderIndex].status = newStatus;
-            localStorage.setItem('aervia_orders', JSON.stringify(orders));
-            loadOrders(); // Re-render to update badge color
-        }
+        database.ref('orders/' + id).update({ status: newStatus });
     };
 
     window.deleteOrder = function (id) {
         if (!confirm('Are you sure you want to delete this order?')) return;
-
-        let orders = JSON.parse(localStorage.getItem('aervia_orders')) || [];
-        orders = orders.filter(o => o.id !== id);
-        localStorage.setItem('aervia_orders', JSON.stringify(orders));
-        loadOrders();
+        database.ref('orders/' + id).remove();
     };
 
     // --- Global Actions ---
 
     clearAllBtn.addEventListener('click', () => {
         if (confirm('WARNING: This will delete ALL orders. Continue?')) {
-            localStorage.removeItem('aervia_orders');
-            loadOrders();
+            database.ref('orders').remove();
         }
     });
-
-    // Auto-refresh every 30 seconds to simulate real-time dashboard
-    setInterval(loadOrders, 30000);
 });

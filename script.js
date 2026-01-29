@@ -126,8 +126,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function saveOrder(order) {
-        const orders = JSON.parse(localStorage.getItem('aervia_orders')) || [];
-        orders.unshift(order);
-        localStorage.setItem('aervia_orders', JSON.stringify(orders));
+        // Save to Firebase Realtime Database
+        database.ref('orders/' + order.id).set(order)
+            .then(() => {
+                console.log('Order saved successfully!');
+            })
+            .catch((error) => {
+                console.error('Error saving order: ', error);
+                alert('Failed to place order. Please try again.');
+            });
     }
 });

@@ -125,15 +125,38 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    function saveOrder(order) {
-        // Save to Firebase Realtime Database
-        database.ref('orders/' + order.id).set(order)
-            .then(() => {
-                console.log('Order saved successfully!');
-            })
-            .catch((error) => {
-                console.error('Error saving order: ', error);
-                alert('Failed to place order. Please try again.');
+    const API_URL = 'https://jsonblob.com/api/jsonBlob/019c0af1-888d-7f81-87f3-a43eacec6c19';
+
+    async function saveOrder(order) {
+        // --- 1. Save to Cloud (JSONBlob) for Cross-Device Sync ---
+        try {
+            // A. Fetch current data
+            const response = await fetch(API_URL);
+            const data = await response.json();
+
+            // B. Ensure structure
+            if (!data.orders) data.orders = {};
+
+            // C. Add new order
+            data.orders[order.id] = order;
+
+            // D. Save back to cloud
+            await fetch(API_URL, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
             });
+            console.log('Order saved to Cloud (JSONBlob)!');
+
+        } catch (e) {
+            console.error('Cloud save failed, falling back to local:', e);
+            // Fallback: Save locally just in case
+            const local = JSON.parse(localStorage.getItem('aervia_orders') || '{}');
+            local[order.id] = order;
+            localStorage.setItem('aervia_orders', JSON.stringify(local));
+        }
+
+        // --- 2. Deprecated Firebase Call (Left for reference) ---
+        // if (typeof database !== 'undefined' && database.ref) ...
     }
 });
